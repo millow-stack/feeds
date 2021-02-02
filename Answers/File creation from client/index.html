@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="check()">Send!</button>
+<input type="text" placeholder="enter some message here">
+
+<script>
+function check() {
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+/*  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText.includes(prompt('Unlock: '))){
+        alert('Status : Matched! \n Welcome '+document.querySelector('input').value+'!');
+      } else {
+        document.write('<h3>Not Allowed!</h3>')
+      }
+    }
+  };*/
+  xhttp.open("post", "#", true);
+  xhttp.send(document.querySelector('input').value);
+}
+</script>
+
+</body>
+</html>
