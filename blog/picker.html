@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pick the blog!</title>
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		  }
+		body{
+			text-align: center;
+			padding: 10px;
+		}
+		input{
+			width: 100%;
+			font-size: 20px;
+			outline: none;
+			border: none;
+			display: block;
+			border-bottom: 0.7px dashed grey;
+			background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAACYktHRAD/h4/MvwAAAAl2cEFnAAABKgAAASkAUBZlMQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMy0wNC0xMFQwNjo1OTowNy0wNzowMI5BiVEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTMtMDQtMTBUMDY6NTk6MDctMDc6MDD/HDHtAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAABF0RVh0VGl0bGUAc2VhcmNoLWljb27Cg+x9AAACKklEQVQ4T6WUSavqQBCFK+2sII7gShFXLpUsBBHFf+1KcAQFwaWiolsnnBDn++4p0iHRqPDuByFJd/Wp6qrqVn5+IQP3+52m0ymtVis6Ho885na7KRgMUiKR4O9vmEQHgwGNx2NyOp0khCBFUXgcJo/Hg67XK8ViMcpkMjz+Dl200+nQZrMhh8PBE4gYQgDidrudvzEOm2KxyP9WsCginM1mHKEUS6VSFA6HOWI4G41GPAfx2+1GgUCAVFXVZMwovwY/lUqFPB4PiyFn+XxemzbT6/VovV6z8Ol0olwux+LPCBQFEQKIvhME2WyWbWGHFCD/VghUGVvE1rDlb6TTabbFmuVyqY2aEWgbFALeI5GINvyeUCjEtlgju+IZoRWfkS30CURoxFJUNjMEt9stf38CNjJKIFvNiMBJgTebzcZt843hcMhCELWqPBDxeJwulwtvC/3X7/e1qVfgFD0rC5tMJrUZM8Lr9VI0GmVBRDCfz6nZbHI/Sna7HXW7XZpMJtxSiBIP1lmhH9NqtaqfGKQDTmQREBnSgwfmMqfYYblc1o+2xHShtNttLgSiee4EmMEp3hDBPJzikimVSuRyuTTLJ1GwWCz4pCB3UhiL/X4/Hw50C5zjLSM+n898weCogxdRIzAGxigAdtNqtV6EC4UC+Xy+z6Kf2O/31Gg0TMK4ZBDxf4uCw+FA9XpdF0aaUOg/iQLcHbVaTb/p0Cl/FgXIJ/oYnaCqKv0DC6dltH6Ks84AAAAASUVORK5CYII=');
+		    background-position: 10px 12px;
+		    background-repeat: no-repeat;
+		    margin-bottom: 12px;
+		    padding: 12px 20px 12px 40px;
+		}
+		input:focus{
+			border-bottom: 2px solid #333;
+		}
+		button{
+			height: 50px;
+			width: initial;
+			margin: none;
+			border: 0.5px solid #111;
+			border-radius: 5px;
+			margin: 6px;
+			background: linear-gradient(#fafafa, #afafaf);
+		}
+		button:active{
+			background: linear-gradient(#afafaf, #fafafa);
+		}
+		button:hover{
+			/*box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 15px 0px rgba(46,46,46,0);*/
+			box-shadow: 0px 10px 13px -7px #000000, 0px 0px 15px 0px rgba(46,46,46,0);
+		}
+		hr{
+			border: 0.3px solid #aaa;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" placeholder="Find a blog to read" onkeyup="search()"/>
+	<div id="collection">
+		<button onclick="goto(this, window.location.href)">Cyber Security</button>
+	</div>
+	<script>
+	function search() {
+	    var input, filter, collection, items, a, i, txtValue;
+	    input = document.querySelectorAll("input")[0];
+	    filter = input.value.toUpperCase();
+	    collection = document.getElementById("collection");
+	    items = collection.getElementsByTagName("button");
+	    for (i = 0; i < items.length; i++) {
+	        txtValue = items[i].textContent || items[i].innerText;
+	        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	            items[i].style.display = "";
+	        } else {
+	            items[i].style.display = "none";
+	        }
+	    }
+	}
+	function goto(where, t){
+		//
+		window.location.replace(t.substring(0, t.lastIndexOf("/"))+'?w='+where.innerText.replace(' ', '_').toLowerCase());
+	}
+	</script>
+</body>
+</html>
